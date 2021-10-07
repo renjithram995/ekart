@@ -1,0 +1,11 @@
+<section class="d-flex item-center fullSizeContainer flex-flow-col side-bar-parent">
+    <div *ngFor="let item of icons"
+        class="full-width d-flex justify-center item-center"
+        [class.selected]="item === selectedNav">
+        <span [ngClass]="[item]" class="svg-icon size30 stroke-white">
+          <svg>
+            <use [attr.xlink:href]="'assets/icon-sprite.svg?#' + item" />
+          </svg>
+        </span>
+    </div>
+</section>
