@@ -6,9 +6,10 @@ export interface IShoe {
   type: string;
   category: string;
   price: string;
-  picture: Array<string>;
+  picture: string;
   name: string;
   registered: string;
+  idealFor: string;
 }
 
 export interface IFilters {

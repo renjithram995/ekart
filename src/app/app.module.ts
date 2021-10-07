@@ -1,22 +1,28 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { NgxMasonryModule } from 'ngx-masonry';
+import { FilterComponentComponent } from './home-component/filter-component/filter-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponentComponent,
-    SideBarComponent
+    SideBarComponent,
+    FilterComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule 
+    FormsModule,
+    NgxMasonryModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

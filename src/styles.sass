@@ -58,6 +58,8 @@
 // common font family
 .roboto400
     font-family: 'Roboto-Regular', Arial, Helvetica, sans-serif
+.roboto500
+    font-family: 'Roboto-Medium', Arial, Helvetica, sans-serif
 .roboto700
     font-family: 'Roboto-Bold', Arial, Helvetica, sans-serif
 // common font size
@@ -129,6 +131,9 @@ body
     &.size16
         width: 16px
         height: 16px
+    &.size36
+        width: 36px
+        height: 36px
     &.stroke-black
         stroke: #000
     &.color-black
@@ -154,6 +159,8 @@ body
     position: relative
 .p-absolute
     position: absolute
+.p-fixed
+    position: fixed
 
 .d-flex 
     display: flex
@@ -182,9 +189,33 @@ body
     @extend .full-height
 .item-center
     align-items: center
+.text-ellipsis
+    text-overflow: ellipsis
+    white-space: nowrap
+    overflow: hidden
+
+.cursor-poiner
+    cursor: pointer
+.custom-scroll
+    overflow: hidden
+    &.scroll-y:hover
+        overflow-y: auto
+    &::-webkit-scrollbar-thumb
+        background-color: rgba(163, 163, 143)
+        border-radius: 16px
+::-webkit-scrollbar
+    background-color: transparent
+    width: 7px
+    height: 7px
+::-webkit-scrollbar-track 
+    background-color: transparent
 
 // paddings and margin
-.p30px
+.p10
+    padding: 10px
+.p20
+    padding: 20px
+.p30
     padding: 30px
 .pl12
     padding-left: 12px
