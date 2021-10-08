@@ -1,9 +1,16 @@
 <section class="d-flex fullSizeContainer flex-flow-col">
     <article class="header full-width d-flex item-center flex-none">
-        <div class="fontSize-30 roboto700 flex-auto text-ellipsis">
+        <div class="show-on-mobile-view flex-auto">
+            <span class="svg-icon size30 logo-icon">
+                <svg>
+                  <use xlink:href="assets/icon-sprite.svg#logo" />
+                </svg>
+              </span>
+        </div>
+        <div class="fontSize-30 roboto700 flex-auto text-ellipsis hide-on-mobile-view">
             <span>Hi John!</span>
         </div>
-        <div class="input-container fontSize-12 d-flex item-center p-relative">
+        <div class="input-container fontSize-12 d-flex item-center p-relative hide-on-mobile-view">
             <input type="text" class="inputbox fullSizeContainer" [(ngModel)]="searchText"
                 placeholder="Search for products, brands and more" (keyup)="searchBoxChange()">
             <span class="svg-icon size24 p-absolute search-icon">
@@ -29,6 +36,17 @@
                 <svg>
                     <use xlink:href="assets/icon-sprite.svg#arrow-down" />
                   </svg>
+            </span>
+        </div>
+    </article>
+    <article class="flex-none d-flex item-center show-on-mobile-view header justify-center header">
+        <div class="input-container fontSize-12 flex-none d-flex item-center p-relative show-on-mobile-view">
+            <input type="text" class="inputbox fullSizeContainer" [(ngModel)]="searchText"
+                placeholder="Search for products, brands and more" (keyup)="searchBoxChange()">
+            <span class="svg-icon size24 p-absolute search-icon">
+                <svg>
+                    <use xlink:href="assets/icon-sprite.svg#search-icon" />
+                    </svg>
             </span>
         </div>
     </article>

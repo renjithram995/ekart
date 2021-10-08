@@ -164,7 +164,6 @@ body
 
 .d-flex 
     display: flex
-
 .overflow-hidden 
     overflow: hidden
 
@@ -219,6 +218,13 @@ body
 ::-webkit-scrollbar-track 
     background-color: transparent
 
+.hide-on-mobile-view
+    display: block
+.show-on-mobile-view
+    display: none !important
+    &.d-flex
+            display: flex
+
 // paddings and margin
 .p10
     padding: 10px
@@ -235,7 +241,7 @@ body
 .pb10
     padding-bottom: 10px
 .mr5
- margin-right: 5px
+    margin-right: 5px
 .mr10
     margin-right: 10px
 .mb5
@@ -246,3 +252,11 @@ body
     margin-left: 5px
 .mt10
     margin-top: 10px
+
+@media screen and (max-width: 660px)
+    .hide-on-mobile-view
+        display: none !important
+    .show-on-mobile-view
+        display: block !important
+        &.d-flex
+            display: flex !important
