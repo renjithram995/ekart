@@ -21,6 +21,8 @@ export class HomeComponentComponent implements OnInit {
   public selectedFilters: Array<IFilters> = []
   public groupedFilters: IgroupFilters = {} as IgroupFilters
   public searchTimeout: ReturnType<typeof setTimeout> = setTimeout(() => '', 1000)
+  public sortOption: Array<string> = ['newest to oldest', 'oldest to newest']
+  public selectedOption: string = 'newest to oldest'
 
   hideFilterPopup: Boolean = true
 
@@ -137,6 +139,14 @@ export class HomeComponentComponent implements OnInit {
   clearFilters(): void { // to clear all the selected filters
     this.selectedFilters = []
     this.executeDataFiltering()
+  }
+  toggleSort(): void { // sort based on registered date
+    this.manageData = this.manageData.sort((a: IShoe, b: IShoe) => {
+      const order =this.selectedOption === 'newest to oldest' ? 1 : -1
+      const aDate = new Date(a.registered).getTime()
+      const bDate = new Date(b.registered).getTime()
+      return aDate - bDate * order
+    })
   }
 
 }

@@ -50,18 +50,19 @@
                 <button class="btn transparent outline" (click)="popupVisiblity(false)">Filters</button>
             </div>
         </div>
-        <div class="full-width roboto400 d-flex item-center justify-space-between">
+        <div class="full-width roboto400 d-flex item-center justify-space-between pb10">
             <span class="fontSize-20">Showing {{manageDataLength()}} Product</span>
-            <div>
+            <div class="p-relative select-box-container">
                 <span class="sort-by fontSize-14 pr12">Sort by</span>
-                <button class="btn sort-icon mt10">
-                    <span>newest to oldest</span>
-                    <span class="svg-icon size16 ml5">
-                        <svg>
-                            <use xlink:href="assets/icon-sprite.svg#arrow-down-light" />
-                          </svg>
-                    </span>
-                </button>
+                <select name="sort" id="sort" class="btn select-box mt10"
+                    [(ngModel)]="selectedOption" (change)="toggleSort()">
+                    <option *ngFor="let option of sortOption" [value]="option">{{option}}</option>
+                </select>
+                <label for="sort" class="svg-icon size16 ml5 p-absolute sort-icon">
+                    <svg>
+                        <use xlink:href="assets/icon-sprite.svg#arrow-down-light" />
+                      </svg>
+                </label>
             </div>
         </div>
         <ngx-masonry [options]="masonryOptions" class="masonry-parent mt10">
