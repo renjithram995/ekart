@@ -5,13 +5,22 @@ export interface IShoe {
   brand: string;
   type: string;
   category: string;
-  price: string;
-  picture: Array<string>;
+  price: number;
+  picture: string;
   name: string;
   registered: string;
+  idealFor: string;
+  hidden: boolean
 }
 
+export type enumIShoeKeys = keyof IShoe
 export interface IFilters {
-  key: string;
-  value: string;
+  key: enumIShoeKeys;
+  value: string | number | boolean | Array<Number>;
+  selected?: boolean;
+  count: number
 }
+
+export type IgroupFilters = {
+  [key in enumIShoeKeys]: Array<IFilters>;
+};

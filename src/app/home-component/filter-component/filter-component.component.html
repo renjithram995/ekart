@@ -1,0 +1,45 @@
+<section class="p-fixed main-container">
+    <article class="body-container full-height p-relative flex-flow-col d-flex">
+        <span class="svg-icon size36 close-icon p-absolute cursor-poiner" (click)="closePopup()">
+            <svg>
+                <use xlink:href="assets/icon-sprite.svg#close-icon-circle" />
+              </svg>
+        </span>
+        <div class="inner-container scroll-y full-height mb5">
+            <div class="fontSize-20 roboto700 mb10">Filters</div>
+            <div *ngFor="let objectData of groupedFilters | keyValueFilter">
+                <div *ngIf="objectData.key !== 'idealFor'" class="fontSize-16 roboto400 capitalize mb5">{{objectData.key}}</div>
+                
+                <!-- [ngStyle]="{height: ((objectData.value.length)/2).toFixed() * 36 + 'px'}" -->
+                <div class="d-flex flex-flow-col flex-wrap"
+                    [style.height]="dynamicHeight(objectData.value.length)">
+                    <div *ngFor="let item of objectData.value" class="half-width height-35 d-flex item-center">
+                        <label class="container fontSize-14 roboto400">
+                            <input type="checkbox" [(ngModel)]="item.selected">
+                            <div class="d-flex">
+                                <span *ngIf="item.key === 'color'"
+                                    class="svg-icon size16 mr5"
+                                    [style.color]="item.value">
+                                    <svg>
+                                        <use xlink:href="assets/icon-sprite.svg#circle" />
+                                        </svg>
+                                </span>
+                                <span class="capitalize">{{item.value | displayFilter}}</span>
+                                <span class="counter ml5">({{item.count}})</span>
+                            </div>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="d-flex">
+            <button class="btn clear-btn mt10 full-width roboto400 fontSize-16" (click)="clearAll()">
+                <span>Clear all</span>
+            </button>
+            <button class="btn apply-btn mt10 full-width roboto400 fontSize-16" (click)="applyButtonClick()">
+                <span>Apply</span>
+            </button>
+        </footer>
+    </article>
+</section>
