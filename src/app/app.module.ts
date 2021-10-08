@@ -9,13 +9,17 @@ import { HomeComponentComponent } from './home-component/home-component.componen
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { FilterComponentComponent } from './home-component/filter-component/filter-component.component';
+import { keyValueFilterPipe } from './common/objectTransform';
+import { displayFilterPipe } from './common/displayFilter';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponentComponent,
     SideBarComponent,
-    FilterComponentComponent
+    FilterComponentComponent,
+    keyValueFilterPipe,
+    displayFilterPipe
   ],
   imports: [
     BrowserModule,

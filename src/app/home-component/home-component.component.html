@@ -5,7 +5,7 @@
         </div>
         <div class="input-container fontSize-12 d-flex item-center p-relative">
             <input type="text" class="inputbox fullSizeContainer" [(ngModel)]="searchText"
-                placeholder="Search for products, brands and more">
+                placeholder="Search for products, brands and more" (keyup)="searchBoxChange()">
             <span class="svg-icon size24 p-absolute search-icon">
                 <svg>
                     <use xlink:href="assets/icon-sprite.svg#search-icon" />
@@ -37,7 +37,7 @@
         <div class="d-flex full-width">
             <div class="filter-chips-container flex-auto">
                 <button *ngFor="let item of selectedFilters" class="btn filter-chips mt10">
-                    <span>{{item.value}}</span>
+                    <span>{{item.value | displayFilter}}</span>
                     <span class="svg-icon close-icon size16 ml5">
                         <svg>
                             <use xlink:href="assets/icon-sprite.svg#close-icon" />
@@ -46,12 +46,12 @@
                 </button>
             </div>
             <div class="mt10 flex-none">
-                <button class="btn transparent">Clear filters</button>
+                <button class="btn transparent" (click)="clearFilters()">Clear all</button>
                 <button class="btn transparent outline" (click)="popupVisiblity(false)">Filters</button>
             </div>
         </div>
         <div class="full-width roboto400 d-flex item-center justify-space-between">
-            <span class="fontSize-20">Showing 26 Product</span>
+            <span class="fontSize-20">Showing {{manageDataLength()}} Product</span>
             <div>
                 <span class="sort-by fontSize-14 pr12">Sort by</span>
                 <button class="btn sort-icon mt10">
@@ -65,24 +65,26 @@
             </div>
         </div>
         <ngx-masonry [options]="masonryOptions" class="masonry-parent mt10">
-            <ngxMasonryItem  class="masonry-item cursor-poiner"
-                *ngFor="let item of manageData">
-                <div class="fullSizeContainer">
-                    <div>
-                        <img src='assets/images/{{item.picture}}.png' class="image" alt="No image found">
+            <ng-container *ngFor="let item of manageData">
+                <ngxMasonryItem class="masonry-item cursor-poiner" *ngIf="!item.hidden"
+                    >
+                    <div class="fullSizeContainer">
+                        <div>
+                            <img src='assets/images/{{item.picture}}.png' class="image" alt="No image found">
+                        </div>
+                        <div class="details-container p10">
+                            <div class="roboto500 fontSize-18">{{item.name}}</div>
+                            <div class="roboto400 fontSize-14 product-details">{{item.idealFor}} {{item.type}}</div>
+                            <div class="roboto700 fontSize-16">Rs.{{item.price}}</div>
+                            <button class="btn add-btn mt10 full-width roboto700 fontSize-16">
+                                <span>Add to Cart</span>
+                            </button>
+                        </div>
                     </div>
-                    <div class="details-container p10">
-                        <div class="roboto500 fontSize-18">{{item.name}}</div>
-                        <div class="roboto400 fontSize-14 product-details">{{item.idealFor}} {{item.type}}</div>
-                        <div class="roboto700 fontSize-16">Rs.{{item.price}}</div>
-                        <button class="btn add-btn mt10 full-width roboto700 fontSize-16">
-                            <span>Add to Cart</span>
-                        </button>
-                    </div>
-                </div>
-            </ngxMasonryItem>
+                </ngxMasonryItem>
+            </ng-container>
         </ngx-masonry>
     </article>
-    <app-filter-component [filterlists]="generatedFilters"
-        (closepopup)="popupVisiblity($event)" *ngIf="!hideFilterPopup"></app-filter-component>
+    <app-filter-component *ngIf="!hideFilterPopup" [groupedFilters]="groupedFilters"
+        (closepopup)="popupVisiblity($event)" (activefilters)="applyFilter($event)"></app-filter-component>
 </section>
