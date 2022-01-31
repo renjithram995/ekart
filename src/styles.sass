@@ -1,3 +1,6 @@
+
+    $font-size : ("0": 0rem,"8": 0.5rem,"9": 0.5625rem,"10": 0.625rem,"11": 0.6875rem,"12": 0.75rem,"13": 0.8125rem,"14": 0.875rem,"15": 0.9375rem,"16": 1rem,"18": 1.125rem,"20": 1.25rem,"22": 1.375rem,"24": 1.5rem,"25": 1.5625rem,"28": 1.75rem,"30": 1.875rem,"32": 2rem,"34": 2.125rem,"36": 2.25rem,"38": 2.375rem,"45": 2.8125rem)
+    
 @font-face 
     font-family: Roboto-Thin /*100*/
     src: url("/assets/font/Roboto-Thin.ttf")  format('truetype')
@@ -66,49 +69,49 @@
     font-family: 'Roboto-Bold', Arial, Helvetica, sans-serif
 // common font size
 .fontSize-45
-    font-size: 2.8125rem
+    font-size: map-get($font-size, "45")
 .fontSize-38
-    font-size: 2.375rem
+    font-size: map-get($font-size, "38")
 .fontSize-36
-    font-size: 2.25rem
+    font-size: map-get($font-size, "36")
 .fontSize-34
-    font-size: 2.125rem
+    font-size: map-get($font-size, "34")
 .fontSize-32
-    font-size: 2rem
+    font-size: map-get($font-size, "32")
 .fontSize-30
-    font-size: 1.875rem
+    font-size: map-get($font-size, "30")
 .fontSize-28
-    font-size: 1.75rem
+    font-size: map-get($font-size, "28")
 .fontSize-25
-    font-size: 1.5625rem
+    font-size: map-get($font-size, "25")
 .fontSize-24
-    font-size: 1.5rem
+    font-size: map-get($font-size, "24")
 .fontSize-22
-    font-size: 1.375rem
+    font-size: map-get($font-size, "22")
 .fontSize-20
-    font-size: 1.25rem
+    font-size: map-get($font-size, "20")
 .fontSize-18
-    font-size: 1.125rem
+    font-size: map-get($font-size, "18")
 .fontSize-16
-    font-size: 1rem
+    font-size: map-get($font-size, "16")
 .fontSize-15
-    font-size: 0.9375rem
+    font-size: map-get($font-size, "15")
 .fontSize-14
-    font-size: 0.875rem
+    font-size: map-get($font-size, "14")
 .fontSize-13
-    font-size: 0.8125rem
+    font-size: map-get($font-size, "13")
 .fontSize-12
-    font-size: 0.75rem
+    font-size: map-get($font-size, "12")
 .fontSize-11
-    font-size: 0.6875rem
+    font-size: map-get($font-size, "11")
 .fontSize-10
-    font-size: 0.625rem
+    font-size: map-get($font-size, "10")
 .fontSize-9
-    font-size: 0.5625rem
+    font-size: map-get($font-size, "9")
 .fontSize-8
-    font-size: 0.5rem
+    font-size: map-get($font-size, "8")
 .fontSize-0
-    font-size: 0
+    font-size: map-get($font-size, "0")
 
 body 
     margin: 0
@@ -227,6 +230,62 @@ body
     &.d-flex
             display: flex
 
+/* butons */
+.btn
+    font-family: 'Muli', Arial, Helvetica, sans-serif
+    border-radius: 4px
+    outline: none
+    display: inline-block
+    user-select: none
+    font-weight: bold
+    text-align: center
+    letter-spacing: 0.4px
+    justify-content: center
+    text-indent: 1.4px
+    font-size: map-get($font-size, "12")
+    transition-duration: .8s
+    transition-property: background
+    transition-timing-function: cubic-bezier(.4,0,.2,1)
+.btnPrimaryActive
+    background-color: #1890ff
+    background-position: center
+    cursor: pointer
+    color: #fff
+    border: none
+
+.btnPrimaryDisabled
+    background-color: rgba(0,0,0,.12)!important
+    color: rgba(0,0,0,.26)!important
+    box-shadow: none!important
+    border: none
+
+.btn.btn-disabled
+    background-color: #E5E5E5
+    color: #BABABA
+    border: none
+    pointer-events: none
+
+
+.btnSmall
+    min-width: 70px
+    height: 30px
+    padding: 0 16px
+    font-size: 0.75rem
+
+.btnMedium
+    font-size: 0.875rem
+    line-height: 1.4
+    min-width: 100px
+    height: 35px
+    padding: 0 16px
+
+.btnLarge
+    min-width: 180px
+    height: 45px
+    font-size: 1rem
+    padding: 0 20px
+    margin-left: 15px
+
 // paddings and margin
 .p10
     padding: 10px
@@ -242,6 +301,9 @@ body
     padding-right: 12px
 .pb10
     padding-bottom: 10px
+.py5
+    padding-top: 5px
+    padding-bottom: 5px
 .mr5
     margin-right: 5px
 .mr10
@@ -254,6 +316,12 @@ body
     margin-left: 5px
 .mt10
     margin-top: 10px
+.mt20
+    margin-top: 20px
+
+.login-image
+    background: url('assets/images/login.png') no-repeat center
+
 
 @media screen and (max-width: 660px)
     .hide-on-mobile-view

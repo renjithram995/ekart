@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShoesTestData } from "../service/shoestestdata"
 import { IShoe, IFilters, IgroupFilters, enumIShoeKeys } from '../interfaces/shoe';
 import { NgxMasonryOptions } from 'ngx-masonry';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-home-component',
   templateUrl: './home-component.component.html',
@@ -10,7 +11,7 @@ import { NgxMasonryOptions } from 'ngx-masonry';
 
 export class HomeComponentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   public masonryOptions: NgxMasonryOptions  = { // options used for NgxMasonry
     gutter: 30,
@@ -147,6 +148,10 @@ export class HomeComponentComponent implements OnInit {
       const bDate = new Date(b.registered).getTime()
       return aDate - bDate * order
     })
+  }
+  logOut(): void {
+    localStorage.clear()
+    this.router.navigate(['Login'], { relativeTo: this.route })
   }
 
 }

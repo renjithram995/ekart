@@ -1,10 +1,9 @@
 <main class="p-relative d-flex overflow-hidden justify-start full-width">
-  <aside class="hide-on-mobile-view abc">
+  <aside class="hide-on-mobile-view" *ngIf="router.url?.toLowerCase() !== '/login'">
     <app-side-bar></app-side-bar>
   </aside>
   <article class="flex-auto">
-    <app-home-component></app-home-component>
-    <!-- <router-outlet></router-outlet> -->
+    <router-outlet></router-outlet>
   </article>
 </main>
 
