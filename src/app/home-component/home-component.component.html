@@ -74,7 +74,7 @@
                 <span class="sort-by fontSize-14 pr12">Sort by</span>
                 <select name="sort" id="sort" class="btn select-box mt10"
                     [(ngModel)]="selectedOption" (change)="toggleSort()">
-                    <option *ngFor="let option of sortOption" [value]="option">{{option}}</option>
+                    <option *ngFor="let option of sortOption" [value]="option">{{ option | SortingOption}}</option>
                 </select>
                 <label for="sort" class="svg-icon size16 ml5 p-absolute sort-icon">
                     <svg>

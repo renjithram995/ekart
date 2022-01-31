@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import Utility from '../common/utility';
 
 @Injectable()
-export class CanActivateTeam implements CanActivate {
+export class AuthenticateLogin implements CanActivate {
     constructor(private router: Router) { }
 
     canActivate(

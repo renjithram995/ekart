@@ -1,8 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ShoesTestData } from "../service/shoestestdata"
 import { IShoe, IFilters, IgroupFilters, enumIShoeKeys } from '../interfaces/shoe';
-import { NgxMasonryOptions } from 'ngx-masonry';
+import { NgxMasonryComponent, NgxMasonryOptions } from 'ngx-masonry';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Pipe, PipeTransform } from '@angular/core';
+
+
+enum displaySortOptions {
+  modifiedDateAscending = 'newest to oldest',
+  modifiedDateDescending = 'oldest to newest'
+}
+type sortTypes = 'modifiedDateAscending' | 'modifiedDateDescending'
+@Pipe({name: 'SortingOption'})
+export class SortingOption implements PipeTransform {
+  transform(value: sortTypes): string {
+    return displaySortOptions[value]
+  }
+}
+
 @Component({
   selector: 'app-home-component',
   templateUrl: './home-component.component.html',
@@ -22,8 +37,10 @@ export class HomeComponentComponent implements OnInit {
   public selectedFilters: Array<IFilters> = []
   public groupedFilters: IgroupFilters = {} as IgroupFilters
   public searchTimeout: ReturnType<typeof setTimeout> = setTimeout(() => '', 1000)
-  public sortOption: Array<string> = ['newest to oldest', 'oldest to newest']
-  public selectedOption: string = 'newest to oldest'
+  public sortOption: Array<sortTypes> = ['modifiedDateAscending', 'modifiedDateDescending']
+  public selectedOption: sortTypes = 'modifiedDateAscending'
+
+  @ViewChild(NgxMasonryComponent) masonry: NgxMasonryComponent;
 
   hideFilterPopup: Boolean = true
 
@@ -143,11 +160,18 @@ export class HomeComponentComponent implements OnInit {
   }
   toggleSort(): void { // sort based on registered date
     this.manageData = this.manageData.sort((a: IShoe, b: IShoe) => {
-      const order =this.selectedOption === 'newest to oldest' ? 1 : -1
+      const order = this.selectedOption === 'modifiedDateAscending' ? 1 : -1
       const aDate = new Date(a.registered).getTime()
       const bDate = new Date(b.registered).getTime()
-      return aDate - bDate * order
+      return (aDate - bDate) * order
     })
+    this.reloadMasanry()
+  }
+  reloadMasanry(): void {
+     if (this.masonry !== undefined) {
+      this.masonry.reloadItems();
+      this.masonry.layout();
+    }
   }
   logOut(): void {
     localStorage.clear()

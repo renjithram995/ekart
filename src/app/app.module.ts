@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponentComponent } from './home-component/home-component.component';
+import { HomeComponentComponent, SortingOption } from './home-component/home-component.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { FilterComponentComponent } from './home-component/filter-component/filter-component.component';
@@ -16,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptors } from './service/httpinterceptors';
-import { CanActivateTeam } from './service/routeauthenticator';
+import { AuthenticateLogin } from './service/routeauthenticator';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { CanActivateTeam } from './service/routeauthenticator';
     FilterComponentComponent,
     keyValueFilterPipe,
     displayFilterPipe,
-    LoginComponent
+    LoginComponent,
+    SortingOption
   ],
   imports: [
     BrowserModule,
@@ -41,7 +42,7 @@ import { CanActivateTeam } from './service/routeauthenticator';
     provide: HTTP_INTERCEPTORS,
     useClass: HttpInterceptors,
     multi: true,
-  }, CanActivateTeam],
+  }, AuthenticateLogin],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
