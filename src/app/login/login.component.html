@@ -1,0 +1,23 @@
+<div class="d-flex fullSizeContainer item-center justify-center login-container flex-flow-col">
+    <div class="login-image"></div>
+    <div class="loginForm p20 mt10">
+      <h2>Login</h2>
+      <form (ngSubmit)="loginSummit($event)" action="" method="" class="flex-flow-col d-flex" autocomplete="off">
+        <div class="full-width p-relative">
+          <svg id="user-icon">
+            <use xlink:href="assets/icon-sprite.svg#user-icon" />
+          </svg>
+          <input type="text" name="userName" id="userName" autocomplete="off"
+            placeholder="Username" [(ngModel)]="username">
+        </div>
+        <div class="full-width mt10 p-relative">
+          <svg id="password-icon">
+            <use xlink:href="assets/icon-sprite.svg#password-icon" />
+          </svg>
+          <input type="password" name="password" id="password"
+            placeholder="Password" [(ngModel)]="password">
+        </div>
+        <button type="submit" class="mt20 btn btnPrimaryActive py5 muli400 capitalize">log in</button>
+      </form>
+    </div>
+  </div>

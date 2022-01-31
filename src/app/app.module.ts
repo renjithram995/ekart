@@ -11,6 +11,12 @@ import { NgxMasonryModule } from 'ngx-masonry';
 import { FilterComponentComponent } from './home-component/filter-component/filter-component.component';
 import { keyValueFilterPipe } from './common/objectTransform';
 import { displayFilterPipe } from './common/displayFilter';
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpInterceptors } from './service/httpinterceptors';
+import { CanActivateTeam } from './service/routeauthenticator';
 
 @NgModule({
   declarations: [
@@ -19,16 +25,23 @@ import { displayFilterPipe } from './common/displayFilter';
     SideBarComponent,
     FilterComponentComponent,
     keyValueFilterPipe,
-    displayFilterPipe
+    displayFilterPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     NgxMasonryModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpInterceptors,
+    multi: true,
+  }, CanActivateTeam],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
