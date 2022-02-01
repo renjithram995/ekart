@@ -1,10 +1,11 @@
 <section class="d-flex item-center fullSizeContainer flex-flow-col side-bar-parent">
-    <div *ngFor="let item of icons"
+    <div *ngFor="let item of icons" [routerLink]="item.routerLink"
         class="full-width d-flex justify-center item-center"
-        [class.selected]="item === selectedNav">
-        <span [ngClass]="[item]" class="svg-icon size30 stroke-white">
+        [class.selected]="item.routerLink === selectedNav"
+        [ngClass]="{'cursor-poiner': item.routerLink, 'prevent-events': !item.routerLink}">
+        <span [ngClass]="[item.icon]" class="svg-icon size30 stroke-white">
           <svg>
-            <use [attr.xlink:href]="'assets/icon-sprite.svg?#' + item" />
+            <use [attr.xlink:href]="'assets/icon-sprite.svg?#' + item.icon" />
           </svg>
         </span>
     </div>

@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptors } from './service/httpinterceptors';
 import { AuthenticateLogin } from './service/routeauthenticator';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AuthenticateLogin } from './service/routeauthenticator';
     keyValueFilterPipe,
     displayFilterPipe,
     LoginComponent,
-    SortingOption
+    SortingOption,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
