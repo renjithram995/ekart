@@ -3,5 +3,5 @@ export interface configuration {
 }
 
 export const configData: configuration = {
-    userurl: 'http://localhost:4000/'
+    userurl: 'http://192.168.1.7:4000/'
 }

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponentComponent } from './home-component/home-component.component';
 import { LoginComponent } from './login/login.component';
 import { AuthenticateLogin } from './service/routeauthenticator';
+import { UserListComponent } from './user-list/user-list.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,12 @@ const routes: Routes = [
   {
     path: 'Login',
     component: LoginComponent,
+    canActivate: [AuthenticateLogin]
+  },
+  {
+    path: 'userlist',
+    component: UserListComponent,
+    pathMatch: 'full',
     canActivate: [AuthenticateLogin]
   },
   { path: '**', redirectTo: '' }
